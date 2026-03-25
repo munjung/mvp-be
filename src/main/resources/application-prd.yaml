@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ontology?currentSchema=mvp
+    username: mvpuser
+    password: new1234!
+    driver-class-name: org.postgresql.Driver
+
+logging:
+  level:
+    root: debug
+
+springdoc:
+  swagger-ui:
+    operations-sorter: method
+    tags-sorter: alpha
+    path: /swagger
