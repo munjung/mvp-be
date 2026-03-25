@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ktds.mvp.demo.domain.brand.mapper.BrandMapper">
+
+    <resultMap id="brandResultMap" type="com.ktds.mvp.demo.domain.brand.dto.BrandDto$Response">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
+    <select id="getBrandList" resultMap="brandResultMap">
+        select id, name
+        from brand
+        order by id
+    </select>
+
+    <select id="getBrandById" resultMap="brandResultMap">
+        select id, name
+        from brand
+        where id = #{id}
+    </select>
+
+</mapper>

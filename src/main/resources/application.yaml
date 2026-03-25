@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: demo
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ontology?currentSchema=mvp
+    username: mvpuser
+    password: new1234!
+    driver-class-name: org.postgresql.Driver
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.ktds.mvp.demo
+  configuration:
+    map-underscore-to-camel-case: true
