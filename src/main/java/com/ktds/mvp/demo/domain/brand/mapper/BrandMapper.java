@@ -1,6 +1,6 @@
 package com.ktds.mvp.demo.domain.brand.mapper;
 
-import com.ktds.mvp.demo.domain.brand.dto.BrandDto;
+import com.ktds.mvp.demo.domain.brand.dto.BrandResponse;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface BrandMapper {
 
-    List<BrandDto.Response> getBrandList();
+    List<BrandResponse> getBrandList();
 
-    BrandDto.Response getBrandById(Long id);
+    BrandResponse getBrandById(Long id);
 }

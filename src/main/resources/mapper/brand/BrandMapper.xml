@@ -4,19 +4,20 @@
 
 <mapper namespace="com.ktds.mvp.demo.domain.brand.mapper.BrandMapper">
 
-    <resultMap id="brandResultMap" type="com.ktds.mvp.demo.domain.brand.dto.BrandDto$Response">
+    <resultMap id="brandResultMap" type="com.ktds.mvp.demo.domain.brand.dto.BrandResponse">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
+        <result property="origin" column="origin"/>
     </resultMap>
 
     <select id="getBrandList" resultMap="brandResultMap">
-        select id, name
+        select id, name, origin
         from brand
         order by id
     </select>
 
     <select id="getBrandById" resultMap="brandResultMap">
-        select id, name
+        select id, name, origin
         from brand
         where id = #{id}
     </select>
