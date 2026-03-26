@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: local   # 기본 실행 환경 (local)
+    active: dev   # 기본 실행 환경 (local)
   application:
     name: mvp-be
 mybatis:

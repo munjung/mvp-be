@@ -1,13 +1,17 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/ontology?currentSchema=mvp
-    username: mvpuser
-    password: new1234!
+    url: jdbc:postgresql://aws-1-ap-northeast-1.pooler.supabase.com/postgres?sslmode=require
+    username: postgres.mnzfbmxhdzndowlajtwy
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
 logging:
   level:
-    root: debug
+    root: info
+    com:
+      ktds:
+        mvp:
+          demo: debug
 
 springdoc:
   swagger-ui:
