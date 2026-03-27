@@ -8,3 +8,10 @@ mybatis:
   type-aliases-package: com.ktds.mvp.demo
   configuration:
     map-underscore-to-camel-case: true
+
+# UptimeRobot 용
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
