@@ -22,7 +22,7 @@ public class DamageController {
     private final DamageService damageService;
 
     @Operation(summary = "파손 부위 목록 조회", description = "파손 부위 마스터 목록을 조회합니다.")
-    @GetMapping("")
+    @GetMapping
     public ApiResponse<List<DamageResponse>> getDamageList() {
         return ApiResponse.success(this.damageService.getDamageList());
     }
