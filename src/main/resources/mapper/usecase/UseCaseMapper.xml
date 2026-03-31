@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ktds.mvp.demo.domain.usecase.mapper.UseCaseMapper">
+    <resultMap id="useCaseResultMap" type="com.ktds.mvp.demo.domain.usecase.dto.UseCaseResponse">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
+    <select id="getUseCaseList" resultMap="useCaseResultMap">
+        select id, name
+        from use_case
+        order by id
+    </select>
+
+
+    <resultMap id="UseCaseVehicleResultMap" type="com.ktds.mvp.demo.domain.usecase.dto.UseCaseVehicleDto">
+        <result property="vehicleId" column="vehicle_id"/>
+        <result property="vehicleType" column="vehicle_type"/>
+        <result property="fuelType" column="fuel_type"/>
+        <result property="engineCc" column="engine_cc"/>
+        <result property="price" column="price"/>
+        <association property="brand" javaType="com.ktds.mvp.demo.domain.usecase.dto.UseCaseVehicleDto$Brand">
+            <result property="id" column="brand_id"/>
+            <result property="name" column="brand_name"/>
+        </association>
+        <association property="model" javaType="com.ktds.mvp.demo.domain.usecase.dto.UseCaseVehicleDto$Model">
+            <result property="id" column="model_id"/>
+            <result property="name" column="model_name"/>
+            <result property="generation" column="generation"/>
+        </association>
+    </resultMap>
+    <select id="getUseCaseById" parameterType="Long" resultMap="UseCaseVehicleResultMap">
+        select t1.vehicle_id
+        , t1.vehicle_type
+        , t4.id as brand_id
+        , t4.name as brand_name
+        , t3.id as model_id
+        , t3.name as model_name
+        , t3.generation
+        , t2.fuel_type
+        , t2.engine_cc, t2.price
+        from use_case_vehicle t1
+        inner join vehicle t2
+        on t1.vehicle_id = t2.id
+        inner join model t3
+        on t2.model_id = t3.id
+        inner join brand t4
+        on t3.brand_id = t4.id
+        where t1.use_case_id = #{useCaseId}
+    </select>
+</mapper>
