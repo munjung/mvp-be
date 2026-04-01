@@ -16,8 +16,9 @@
 
 
     <resultMap id="UseCaseVehicleResultMap" type="com.ktds.mvp.demo.domain.usecase.dto.UseCaseVehicleDto">
-        <result property="vehicleId" column="vehicle_id"/>
+        <id property="vehicleId" column="vehicle_id"/>
         <result property="vehicleType" column="vehicle_type"/>
+        <result property="damageDegree" column="damage_degree"/>
         <result property="fuelType" column="fuel_type"/>
         <result property="engineCc" column="engine_cc"/>
         <result property="price" column="price"/>
@@ -30,17 +31,25 @@
             <result property="name" column="model_name"/>
             <result property="generation" column="generation"/>
         </association>
+        <collection property="damageParts" ofType="DamagePartDto">
+            <result property="category" column="category"/>
+            <result property="name" column="name"/>
+        </collection>
     </resultMap>
     <select id="getUseCaseById" parameterType="Long" resultMap="UseCaseVehicleResultMap">
         select t1.vehicle_id
         , t1.vehicle_type
+        , t1.damage_degree
         , t4.id as brand_id
         , t4.name as brand_name
         , t3.id as model_id
         , t3.name as model_name
         , t3.generation
         , t2.fuel_type
-        , t2.engine_cc, t2.price
+        , t2.engine_cc
+        , t2.price
+        , t7."name" as category
+        , t6."name" as name
         from use_case_vehicle t1
         inner join vehicle t2
         on t1.vehicle_id = t2.id
@@ -48,6 +57,12 @@
         on t2.model_id = t3.id
         inner join brand t4
         on t3.brand_id = t4.id
+        left join use_case_vehicle_damage_part t5
+        on t1.id = t5.use_case_vehicle_id
+        left join damage_part t6
+        on t5.damage_part_id = t6.id
+        left join damage_category t7
+        on t6.category_id = t7.id
         where t1.use_case_id = #{useCaseId}
     </select>
 </mapper>
