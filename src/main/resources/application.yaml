@@ -18,6 +18,3 @@ management:
 
 cors:
   allowed-origins: ${ALLOWED_ORIGINS}
-
-rule-engine:
-  url: http://localhost:3001

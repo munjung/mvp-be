@@ -18,3 +18,6 @@ springdoc:
     operations-sorter: method
     tags-sorter: alpha
     path: /swagger
+
+rule-engine:
+  url: ${RULE_ENGINE_URL}
