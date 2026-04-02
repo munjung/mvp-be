@@ -31,9 +31,11 @@
             <result property="name" column="model_name"/>
             <result property="generation" column="generation"/>
         </association>
-        <collection property="damageParts" ofType="DamagePartDto">
-            <result property="category" column="category"/>
-            <result property="name" column="name"/>
+        <collection property="rawDamageParts" ofType="com.ktds.mvp.demo.domain.damage.dto.DamageDto">
+            <result property="categoryId" column="category_id"/>
+            <result property="categoryName" column="category_name"/>
+            <result property="partId" column="part_id"/>
+            <result property="partName" column="part_name"/>
         </collection>
     </resultMap>
     <select id="getUseCaseById" parameterType="Long" resultMap="UseCaseVehicleResultMap">
@@ -48,8 +50,10 @@
         , t2.fuel_type
         , t2.engine_cc
         , t2.price
-        , t7."name" as category
-        , t6."name" as name
+        , t7.id as category_id
+        , t7."name" as category_name
+        , t6.id as part_id
+        , t6."name" as part_name
         from use_case_vehicle t1
         inner join vehicle t2
         on t1.vehicle_id = t2.id

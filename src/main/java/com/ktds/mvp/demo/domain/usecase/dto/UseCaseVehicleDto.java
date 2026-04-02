@@ -1,6 +1,8 @@
 package com.ktds.mvp.demo.domain.usecase.dto;
 
-import com.ktds.mvp.demo.domain.damage.dto.DamagePartDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ktds.mvp.demo.domain.damage.dto.DamageDto;
+import com.ktds.mvp.demo.domain.damage.dto.DamageResponse;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,7 +18,9 @@ public class UseCaseVehicleDto {
     private Long price;
     private Brand brand;
     private Model model;
-    private List<DamagePartDto> damageParts;
+    private List<DamageResponse> damageParts;
+    @JsonIgnore
+    private List<DamageDto> rawDamageParts;
 
     @NoArgsConstructor
     @Data
