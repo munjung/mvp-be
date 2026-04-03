@@ -1,5 +1,6 @@
 package com.ktds.mvp.demo.domain.damage.dto;
 
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
@@ -14,7 +15,10 @@ public class DamagePriceRequest {
     public static class VehicleDto {
         private String vehicleId;
         private String damageDegree;
-        @Schema(description = "파손부위 id 목록", example = "[1,2,3]")
+        @ArraySchema(
+                schema = @Schema(type = "integer", example = "1"),
+                arraySchema = @Schema(description = "파손부위 id 목록")
+        )
         private List<Long> damageParts;
 
         // DamagePriceRequest 전용 추가 필드
