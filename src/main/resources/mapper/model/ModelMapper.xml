@@ -10,7 +10,7 @@
 
 
     <select id="getModelListByBrand" resultMap="modelResultMap">
-        select max(id), name
+        select max(id) as id, name
         from model
         where brand_id = #{brandId}
         group by name
