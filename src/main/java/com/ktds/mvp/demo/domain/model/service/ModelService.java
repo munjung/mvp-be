@@ -14,8 +14,7 @@ public class ModelService {
 
     private final ModelMapper modelMapper;
 
-    public List<String> getModelListByBrand(Long brandId) {
-        List<ModelResponse> modelResponseList = this.modelMapper.getModelListByBrand(brandId);
-        return modelResponseList.stream().map(ModelResponse::getName).distinct().toList();
+    public List<ModelResponse> getModelListByBrand(Long brandId) {
+        return this.modelMapper.getModelListByBrand(brandId);
     }
 }

@@ -1,6 +1,7 @@
 package com.ktds.mvp.demo.domain.model.controller;
 
 import com.ktds.mvp.demo.common.response.ApiResponse;
+import com.ktds.mvp.demo.domain.model.dto.ModelResponse;
 import com.ktds.mvp.demo.domain.model.service.ModelService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -22,7 +23,7 @@ public class ModelController {
 
     @Operation(summary = "제조사 모델 목록 조회", description = "제조사에 속한 차량 모델 리스트를 조회합니다.")
     @GetMapping("/{brandId}")
-    public ApiResponse<List<String>> getModelAllList(@PathVariable("brandId") Long brandId) {
+    public ApiResponse<List<ModelResponse>> getModelAllList(@PathVariable("brandId") Long brandId) {
         return ApiResponse.success(this.modelService.getModelListByBrand(brandId));
     }
 }
