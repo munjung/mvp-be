@@ -14,7 +14,9 @@ public class DamageService {
     private final DamageUtil damageUtil;
     private final DamageMapper damageMapper;
 
+
     public List<DamageResponse> getDamageList() {
         return this.damageUtil.groupByCategory(this.damageMapper.getDamageList());
     }
+
 }

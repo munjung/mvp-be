@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ktds.mvp.demo.domain.damage.mapper.DamagePriceMapper">
+    <resultMap id="DamagePriceResultMap" type="com.ktds.mvp.demo.domain.damage.dto.DamagePriceVehicleDto$RawDto">
+        <result property="categoryId" column="category_id"/>
+        <result property="category" column="category"/>
+        <result property="partId" column="part_id"/>
+        <result property="partName" column="part_name"/>
+        <result property="damageDegree" column="damage_degree"/>
+        <result property="partsCost" column="parts_cost"/>
+        <result property="laborCost" column="labor_cost"/>
+        <result property="paintCost" column="paint_cost"/>
+    </resultMap>
+
+    <select id="getDamagePrice" resultMap="DamagePriceResultMap">
+        select t2.id   as category_id
+        , t2.name      as category
+        , t1.id        as part_id
+        , t1.name      as part_name
+        , t3.damage_degree
+        , t3.parts_cost
+        , t3.labor_cost
+        , t3.paint_cost
+        from damage_part t1
+        inner join damage_category t2
+        on t1.category_id = t2.id
+        inner join damage_price t3
+        on t3.damage_part_id = t1.id
+        and t3.vehicle_id = #{vehicleId}
+        and t3.damage_degree = #{damageDegree}
+        where t1.id in
+        <foreach collection="damageParts" item="partId" open="(" separator="," close=")">
+            #{partId}
+        </foreach>
+    </select>
+</mapper>
