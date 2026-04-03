@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 public class AccidentResponse {
     private Long id;
     @Schema(description = "사고유형", example = "후미추돌 - 직진 중 추돌")
-    private String type_name;
+    private String typeName;
 }

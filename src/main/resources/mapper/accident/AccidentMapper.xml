@@ -6,7 +6,7 @@
 
     <resultMap id="accidendResultMap" type="com.ktds.mvp.demo.domain.accident.dto.AccidentResponse">
         <id property="id" column="id"/>
-        <result property="type_name" column="type_name"/>
+        <result property="typeName" column="type_name"/>
     </resultMap>
 
     <select id="getAccidentList" resultMap="accidendResultMap">
